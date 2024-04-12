@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### Variables .
+### Variables.
 
     # Primer Personaje
     vida_1=100
