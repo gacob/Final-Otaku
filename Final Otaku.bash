@@ -385,6 +385,7 @@ character() {
         else 
             echo Has seleccionado Espadachín Okay Pepe.
             vida_2=$current_hp
+            current_hp=$vida_1
             current_atk=$atk_1
             current_def=$def_1
             character_on_play=1
@@ -401,6 +402,7 @@ character() {
         else
                     echo Has seleccionado Guardián Dani el Pensante.
                     vida_1=$current_hp
+                    current_hp=$vida_2
                     current_atk=$atk_2
                     current_def=$def_2
                     character_on_play=2
