@@ -292,7 +292,8 @@ boss_turn() {
     echo Hace $boss_atk_done de daño.
     echo Te quedan $(( current_hp - boss_atk_done )) de vida.
     current_hp=$(( current_hp - boss_atk_done ))
-
+    my_turn
+    
     # Matar a Pepe
     if [[ ( $character_on_play -eq 1 ) && ( $current_hp -le 0 ) ]]; then ## Pepe
         echo "$character_name" ha muerto.
