@@ -117,6 +117,9 @@ fin() {
     fi
 
     echo ¿Te gustaría volver a jugar?
+    sleep 1
+    echo 1. Sí.
+    echo 2. No.
     read -r ending_choose
     case $ending_choose in
     1) 
