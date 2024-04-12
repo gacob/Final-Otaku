@@ -74,9 +74,11 @@ read -r inicio_character
 if [[ ( $inicio_character -lt 1 ) || ( $inicio_character -gt 2 )]]; then # Si el valor es menor de 1 o mayor que 2, seleccionas a Pepe.
     echo Este personaje no existe. Se usará a Espadachín Okay Pepe.
     character_on_play=1
+    inicio_character=0
     my_turn
 else
     character_on_play=$inicio_character
+    inicio_character=0
     my_turn
 fi
 }
@@ -192,6 +194,7 @@ fuego () {
     echo Haces $(( (current_atk * fire ) * ( full_percent - boss_def ) / full_percent )) de daño de fuego.
     echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk * fire ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
     boss_hp=$(( boss_hp - ( ( current_atk * fire ) * ( full_percent - boss_def ) / full_percent ) ))
+    choose_atk=0
     check_win
 }
 
@@ -199,6 +202,7 @@ aire () {
     echo Soplas fuertemente hacia el enemigo.
     echo No es muy efectivo... 
     echo Salvo despeinarle, no le has hecho nada.
+    choose_atk=0
     check_win
 }
 
@@ -208,6 +212,7 @@ tierra() {
     echo Haces $(( (current_atk / earth ) * ( full_percent - boss_def ) / full_percent )) de daño de tierra.
     echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk / earth ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
     boss_hp=$(( boss_hp - ( ( current_atk / earth ) * ( full_percent - boss_def ) / full_percent ) ))
+    choose_atk=0
     check_win
 }
 
@@ -217,6 +222,7 @@ agua() {
     echo Haces $(( (current_atk * water ) * ( full_percent - boss_def ) / full_percent )) de daño de agua.
     echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk * water ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
     boss_hp=$(( boss_hp - ( ( current_atk * water ) * ( full_percent - boss_def ) / full_percent ) ))
+    choose_atk=0
     check_win
 }
 
@@ -288,12 +294,26 @@ boss_turn() {
         echo "$frase_azar_7"
     fi
 
+    ## Turno del Boss
+    sleep 2
+    echo ________________________________________________________
     echo ¡Coma Flotante-kun lanza Precisión Cuádruple!
+    echo ________________________________________________________
+    sleep 2
     echo Hace $boss_atk_done de daño.
+    sleep 2
     echo Te quedan $(( current_hp - boss_atk_done )) de vida.
+    sleep 2
     current_hp=$(( current_hp - boss_atk_done ))
+
+    if [[ $character_on_play -eq 1 ]]; then
+        vida_1=$current_hp
+    else
+        vida_2=$current_hp
+    fi
+
     my_turn
-    
+
     # Matar a Pepe
     if [[ ( $character_on_play -eq 1 ) && ( $current_hp -le 0 ) ]]; then ## Pepe
         echo "$character_name" ha muerto.
