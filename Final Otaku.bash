@@ -101,13 +101,17 @@ fin() {
     echo 3. Sí, pero esta vez prometo que será la última.
     read -r ending_choose
     case $ending_choose in
-    1) inicio ;;
+    1) 
+        ending_choose=0
+        inicio ;;
     2) exit ;;
     3) 
+        ending_choose=0
         secret=1
         inicio
         ;;
     *) echo Elige una opción válida
+        ending_choose=0
         fin
     esac
     fi
@@ -115,9 +119,14 @@ fin() {
     echo ¿Te gustaría volver a jugar?
     read -r ending_choose
     case $ending_choose in
-    1) inicio ;;
-    2) exit ;;
+    1) 
+        ending_choose=0
+        inicio ;;
+    2) 
+        ending_choose=0
+        exit ;;
     *) echo Elige una opción válida
+        ending_choose=0
         fin
     esac
 }
@@ -369,6 +378,7 @@ character() {
     read -r choose_personaje
     if [[ $character_on_play -eq 1 &&  $choose_personaje -eq 1 ]]; then 
         echo Ya estás usando a Espadachín Okay Pepe.
+        choose_personaje=0
         my_turn 
     else 
         echo Has seleccionado Espadachín Okay Pepe.
@@ -382,6 +392,7 @@ character() {
 
     if [[ $character_on_play -eq 2 &&  $choose_personaje -eq 2 ]]; then
                 echo Ya estás usando a Guardián Dani el Pensante.
+                choose_personaje=0
                 my_turn
     else
                 echo Has seleccionado Guardián Dani el Pensante.
@@ -416,12 +427,15 @@ real_ending() {
     echo "Pero, ¿Por qué me lo has tirado? ¿Es para mí? (SI/NO)"
     read -r real_answer
     if [[ $real_answer = SI ]]; then
+        real_answer=0
         echo "¿En serio? (SI/NO)"
         read -r real_answer
         if [[ $real_answer = SI ]]; then
+            real_answer=0
             echo "No me engañes por favor... (ES PARA TI/NO ES PARA TI)"
             read -r real_answer 
                 if [[ $real_answer = "ES PARA TI" ]]; then
+                    real_answer=0
                     echo Vale, vale... Entonces le echaré un ojo si no te importa.
                     read -r
                     echo ¡Tiene varias hojas a color!
@@ -431,6 +445,7 @@ real_ending() {
                     echo "¿Qué? ¿Qué por qué estoy llorando? No estoy llorando... ¡Son mentiras y calumnias! (SI ESTAS LLORANDO/NO ESTAS LLORANDO)"
                     read -r real_answer
                     if [[ $real_answer = "SI ESTAS LLORANDO" ]]; then
+                        real_answer=0
                         echo Vale, es verdad...
                         .sleep 1s
                         echo Pero es que el regalo es tan bueno...
@@ -457,6 +472,7 @@ real_ending() {
                         fin
                     else
                         echo Gracias por entenderlo...
+                        real_answer=0
                         .sleep 1s
                         echo El regalo es tan bueno... Muchas gracias, de verdad.
                         read -r
@@ -483,6 +499,7 @@ real_ending() {
                     fi
                 else
                     echo Has roto mi corazón...
+                    real_answer=0
                     read -r
                     logro_4=0
                     logro_3=0
@@ -493,6 +510,7 @@ real_ending() {
                 fi
         else
             echo ¡Vaya forma de gastarme una broma!
+            real_answer=0
             read -r
             logro_4=0
             logro_3=0
@@ -503,6 +521,7 @@ real_ending() {
         fi
     else
         echo Sabía que esto no era para mí... Soy un iluso
+        real_answer=0
         read -r
         logro_4=0
         logro_3=0
@@ -523,10 +542,10 @@ bag() {
     echo Has abierto la mochila.
 
     if [[ $secret -eq 1 ]]; then
-        echo 1. Poción de vida.
-        echo 2. Poción de ataque.
+        echo 1. 1x Poción de vida.
+        echo 2. 1x Poción de ataque.
         echo 3. Volver
-        echo 4̷̭͖́̑.̸̡̔̆ ̵̜͆͜1̴̯̥̑̚x̴̙͔̿ ̵̠͊O̷̥̞̊̌n̷̮̐e̷̗͐͋ ̶͎͍̀̄P̴̲̹͊ḯ̴͕͚́ė̶͔͕͐c̶̺̾̒ě̸̬̈́ ̸̫͝M̸̡̆ȁ̷̡͙n̴̝͖̓̿ģ̷̃͝a̶̼̬̋.̷̷̨͖̩̩̮̻̝̥͙̝̀̾̑
+        echo 4̷̭͖́̑. 1x Manga de One Piece.
         read -r choose_mochila
         if [[ $choose_mochila -eq 1 ]]; then
             echo La poción de vida no está disponible.
@@ -543,7 +562,7 @@ bag() {
             my_turn
         fi
         if [[ $choose_mochila -eq 4 ]]; then
-            echo L̴̟͔̆a̶͇̩͗̂n̷̤̓ż̸̦̝a̸̛ͅș̴̇ ̵̛̺e̶̩̍l̷̡͙̚ ̴̤͐m̵̞̳͒ä̶̝̐n̷͎̹̑̑ḡ̶̮͕͛a̶̢̔̏ ̶̺̹̚h̵̃͜a̵͖̓̀c̸̡̾̚i̵̥͍̎a̸͚͠ ̷̮̦́C̸̹͝o̴̖̹̓m̴̙̄͋ͅa̷̮̗̓ ̷̥̒F̵͈̥̆l̴̦͓͐o̶̪̖͑̿t̴̢̛̰̀a̷̲̼̋̇n̸̩͘t̵̗̬̋ė̴͈̔-̶͙̼͋k̴̹͎̍͝u̸̼̞̿͛ṅ̸̥̼͑.̵͖͐
+            echo Lanzas el manga de One Piece hacia Coma Flotante-kun.
             read -r
             choose_mochila=0
             real_ending
@@ -556,7 +575,9 @@ bag() {
     fi
     # No se ha usado objetos
     if [[ ( $mochila_pocion -eq 0 ) && ( $mochila_fuerza -eq 0 ) ]]; then
-        echo 1. Poción de vida. 2. Poción de Ataque. 3. Volver 
+        echo 1. 1x Poción de vida. 
+        echo 2. 1x Poción de Ataque. 
+        echo 3. Volver 
         # Poción de ataque = x2 durante todo el combate.
         echo ¿Qué objeto deseas usar?
         read -r choose_mochila
@@ -602,7 +623,8 @@ bag() {
 
     # Se ha usado la poción de vida
     if [[ ( $mochila_pocion -eq 1 ) && ( $mochila_fuerza -eq 0 ) ]]; then
-        echo 1. Poción de Ataque. 2. Volver. # Poción de ataque = x2 durante todo el combate.
+        echo 1. 1x Poción de Ataque. 
+        echo 2. Volver.
         echo ¿Qué objeto deseas usar?
         read -r choose_mochila
         if [[ $choose_mochila -eq 1 ]]; then
@@ -615,10 +637,12 @@ bag() {
             choose_mochila=0
             boss_turn
         fi
+
         if [[ $choose_mochila -eq 2 ]]; then
             choose_mochila=0
             my_turn
         fi
+
         if [[ $choose_mochila -gt 2 ]];
         then
             echo Introduce un valor válido.
@@ -642,12 +666,13 @@ bag() {
             choose_mochila=0
             boss_turn
         fi
+
         if [[ $choose_mochila -eq 2 ]]; then
             choose_mochila=0
             my_turn
         fi
-        if [[ $choose_mochila -gt 2 ]];
-        then
+
+        if [[ $choose_mochila -gt 2 ]]; then
             echo Introduce un valor válido.
             choose_mochila=0
             bag 
