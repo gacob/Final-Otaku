@@ -372,7 +372,6 @@ boss_turn() {
     sleep 1
     echo Hace $boss_atk_done de daño.
     sleep 1
-    echo Te quedan $(( current_hp - boss_atk_done )) de vida.
     sleep 1
     current_hp=$(( current_hp - boss_atk_done ))
 
@@ -417,6 +416,7 @@ boss_turn() {
         fi
     fi
 
+    echo Te quedan $(( current_hp - boss_atk_done )) de vida.
     my_turn
 }
 ###
