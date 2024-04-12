@@ -438,7 +438,7 @@ character() {
     echo ¿Qué personaje vas a utilizar?
     read -r choose_personaje
 
-    if [[ $choose_personaje -eq 1 ]]; then   
+    if [[ $choose_personaje -eq 1 && $vida_1 -gt 0 ]]; then   
         if [[ $character_on_play -eq 1 ]]; then 
             echo Ya estás usando a Espadachín Okay Pepe.
             choose_personaje=0
@@ -455,7 +455,7 @@ character() {
         fi
     fi
 
-    if [[ $choose_personaje -eq 2 ]]; then
+    if [[ $choose_personaje -eq 2 && $vida_2 -gt 0 ]]; then
         if [[ $character_on_play -eq 2 ]]; then
                     echo Ya estás usando a Guardián Dani el Pensante.
                     choose_personaje=0
