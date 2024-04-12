@@ -60,36 +60,39 @@
 
 ### Inicio
 inicio() {
-echo ¡Bienvenido a Final Otaku!
-sleep 2
-echo En este juego manejarás a dos legendarios guerreros para vencer el mal otaku.
-sleep 2
-echo ____________________________________________________________________________________
-echo
-echo ¿Con qué personaje deseas empezar?
-echo
-echo 1. Espadachín Okay Pepe
-echo Un legendario espadachín con estadísticas equilibradas. Es el hermano de la famosa Alexa Amazon.
-echo 
-echo ____________________________________________________________________________________
-echo 2. Guardián Dani el Pensante
-echo Las leyendas cuentan que piensa tanto, que no procesa el daño que recibe. Tiene poco ataque y defensa pero mucha vida. 
-echo 
-echo ____________________________________________________________________________________
-echo 
-read -r inicio_character
-if [[ ( $inicio_character -lt 1 ) || ( $inicio_character -gt 2 )]]; then # Si el valor es menor de 1 o mayor que 2, seleccionas a Pepe.
-    echo Este personaje no existe. Se usará a Espadachín Okay Pepe.
-    echo 
+    echo ____________________________________________________________________________________
+    echo ¡Bienvenido a Final Otaku!
+    sleep 1
+    echo En este juego manejarás a dos legendarios guerreros para vencer el mal otaku.
     sleep 2
-    character_on_play=1
-    inicio_character=0
-    my_turn
-else
-    character_on_play=$inicio_character
-    inicio_character=0
-    my_turn
-fi
+    echo
+    echo ¿Con qué personaje deseas empezar?
+    echo
+    echo ____________________________________________________________________________________
+    echo 
+    echo 1. Espadachín Okay Pepe
+    echo Un legendario espadachín con estadísticas equilibradas. Es el hermano de la famosa Alexa Amazon.
+    echo 
+    echo ____________________________________________________________________________________
+    echo 
+    echo 2. Guardián Dani el Pensante
+    echo Las leyendas cuentan que piensa tanto, que no procesa el daño que recibe. Tiene poco ataque y defensa pero mucha vida. 
+    echo 
+    echo ____________________________________________________________________________________
+    echo 
+    read -r inicio_character
+    if [[ ( $inicio_character -lt 1 ) || ( $inicio_character -gt 2 )]]; then # Si el valor es menor de 1 o mayor que 2, seleccionas a Pepe.
+        echo Este personaje no existe. Se usará a Espadachín Okay Pepe.
+        echo 
+        sleep 2
+        character_on_play=1
+        inicio_character=0
+        my_turn
+    else
+        character_on_play=$inicio_character
+        inicio_character=0
+        my_turn
+    fi
 }
 
 
