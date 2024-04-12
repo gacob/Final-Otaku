@@ -294,7 +294,7 @@ fight() {
     echo ¿Con qué elemento deseas atacar?
     sleep 1
     echo 1. Fuego.  2. Aire.
-    echo 4. Agua .  3. Tierra.
+    echo 3. Tierra. 4. Agua 
     echo 5. Volver.
     sleep 1
     read -r choose_atk
