@@ -789,20 +789,20 @@ my_turn() {
         fight
     fi
     if [[ $choose -eq 2 ]]; then
-        choose=2
+        choose=0
         character
     fi
     if [[ $choose -eq 3 ]]; then
-        choose=3
+        choose=0
         bag
     fi
     if [[ $choose -eq 4 ]]; then
-        choose=4
+        choose=0
         leave
     fi
     if [[ $choose -ge 5 ]]; then
         echo Introduce un valor correcto
-        choose=5
+        choose=0
         my_turn
     fi
 }
