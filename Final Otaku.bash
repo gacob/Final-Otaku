@@ -376,32 +376,37 @@ character() {
     echo 3. Volver.
     echo ¿Qué personaje vas a utilizar?
     read -r choose_personaje
-    if [[ $character_on_play -eq 1 &&  $choose_personaje -eq 1 ]]; then 
-        echo Ya estás usando a Espadachín Okay Pepe.
-        choose_personaje=0
-        my_turn 
-    else 
-        echo Has seleccionado Espadachín Okay Pepe.
-        vida_2=$current_hp
-        current_atk=$atk_1
-        current_def=$def_1
-        character_on_play=1
-        choose_personaje=0
-        boss_turn
+
+    if [[ $choose_personaje -eq 1 ]]; then   
+        if [[ $character_on_play -eq 1 ]]; then 
+            echo Ya estás usando a Espadachín Okay Pepe.
+            choose_personaje=0
+            my_turn 
+        else 
+            echo Has seleccionado Espadachín Okay Pepe.
+            vida_2=$current_hp
+            current_atk=$atk_1
+            current_def=$def_1
+            character_on_play=1
+            choose_personaje=0
+            boss_turn
+        fi
     fi
 
-    if [[ $character_on_play -eq 2 &&  $choose_personaje -eq 2 ]]; then
-                echo Ya estás usando a Guardián Dani el Pensante.
-                choose_personaje=0
-                my_turn
-    else
-                echo Has seleccionado Guardián Dani el Pensante.
-                vida_1=$current_hp
-                current_atk=$atk_2
-                current_def=$def_2
-                character_on_play=2
-                choose_personaje=0
-                boss_turn
+    if [[ $choose_personaje -eq 2 ]]; then
+        if [[ $character_on_play -eq 2 ]]; then
+                    echo Ya estás usando a Guardián Dani el Pensante.
+                    choose_personaje=0
+                    my_turn
+        else
+                    echo Has seleccionado Guardián Dani el Pensante.
+                    vida_1=$current_hp
+                    current_atk=$atk_2
+                    current_def=$def_2
+                    character_on_play=2
+                    choose_personaje=0
+                    boss_turn
+        fi
     fi
 
     if [[ $choose_personaje -eq 3 ]]; then
@@ -409,7 +414,7 @@ character() {
         my_turn 
     fi
 
-    if [[ $choose_personaje -ge 4 ]]; then
+    if [[ $choose_personaje -ge 4 && $choose_personaje -le 0 ]]; then
         echo Introduce un valor válido
         choose_personaje=0
         character
