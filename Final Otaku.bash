@@ -382,8 +382,6 @@ boss_turn() {
         vida_2=$current_hp
     fi
 
-    my_turn
-
     # Matar a Pepe
     if [[ ( $character_on_play -eq 1 ) && ( $current_hp -le 0 ) ]]; then ## Pepe
         echo "$character_name" ha muerto.
@@ -418,6 +416,8 @@ boss_turn() {
             fin
         fi
     fi
+
+    my_turn
 }
 ###
 
