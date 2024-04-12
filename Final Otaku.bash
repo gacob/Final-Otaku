@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### Variables,
+### Variables
 
     # Primer Personaje
     vida_1=100
@@ -71,7 +71,7 @@ echo 2. Guardián Dani el Pensante
 echo Las leyendas cuentan que piensa tanto, que no procesa el daño que recibe. Tiene poco ataque y defensa pero mucha vida. 
 echo "--------------------------------------------------------------"
 read -r inicio_character
-if [[ ( $inicio_character -lt 1 ) && ( $inicio_character -gt 2 )]]; then # Si el valor es menor de 1 y mayor que 2, seleccionas a Pepe.
+if [[ ( $inicio_character -lt 1 ) || ( $inicio_character -gt 2 )]]; then # Si el valor es menor de 1 o mayor que 2, seleccionas a Pepe.
     echo Este personaje no existe. Se usará a Espadachín Okay Pepe.
     character_on_play=1
     my_turn
