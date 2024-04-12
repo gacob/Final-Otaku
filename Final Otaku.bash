@@ -36,6 +36,8 @@
 
     # Ataques
     fire=2
+    earth=2
+    water=4
     full_percent=100
     
 ### Fin de Variables
@@ -187,9 +189,9 @@ check_win() {
 fuego () {
     echo Al grito de "MUERE BICHO" haces tremendo lanzallamas encendiendo un bote de insecticida con un mechero.
     echo ¡Es efectivo!
-    echo Haces $(( (current_atk * fire ) * ( full_percent - boss_def ) / full_percent  )) de daño de fuego.
-    echo Coma Flotante-kun tiene ahora $(( boss_hp-(10-( current_atk * 2 ) * boss_def ) / 100 )) de vida.
-    boss_hp=$(( boss_hp-(10-( current_atk * 2 ) * boss_def ) / 100 ))
+    echo Haces $(( (current_atk * fire ) * ( full_percent - boss_def ) / full_percent )) de daño de fuego.
+    echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk * fire ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
+    boss_hp=$(( boss_hp - ( ( current_atk * fire ) * ( full_percent - boss_def ) / full_percent ) ))
     check_win
 }
 
@@ -203,18 +205,18 @@ aire () {
 tierra() {
     echo Buscas una piedra para tirársela, pero una piedra grande.
     echo No es efectivo...
-    echo Haces $(( ((( current_atk / 2 ) * boss_def ) / 100 ) )) de daño de tierra.
-    echo Coma Flotante-kun tiene ahora $(( boss_hp-(10-( current_atk / 2 ) * boss_def ) / 100 )) de vida.
-    boss_hp=$(( boss_hp-(10-( current_atk / 2 ) * boss_def ) / 100 ))
+    echo Haces $(( (current_atk / earth ) * ( full_percent - boss_def ) / full_percent )) de daño de tierra.
+    echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk / earth ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
+    boss_hp=$(( boss_hp - ( ( current_atk / earth ) * ( full_percent - boss_def ) / full_percent ) ))
     check_win
 }
 
 agua() {
     echo Al recibir tremendo olor a otaku, haces la danza de la lluvia.
     echo ¡Es muy efectivo!
-    echo Haces $(( ((( current_atk * 4 ) * boss_def ) / 100 ) )) de daño de agua.
-    echo Coma Flotante-kun tiene ahora $(( boss_hp-(10-( current_atk * 4 ) * boss_def ) / 100 )) de vida.
-    boss_hp=$(( boss_hp-(10-( current_atk * 4 ) * boss_def ) / 100 ))
+    echo Haces $(( (current_atk * water ) * ( full_percent - boss_def ) / full_percent )) de daño de agua.
+    echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk * water ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
+    boss_hp=$(( boss_hp - ( ( current_atk * water ) * ( full_percent - boss_def ) / full_percent ) ))
     check_win
 }
 
