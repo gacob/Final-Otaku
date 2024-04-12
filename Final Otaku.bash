@@ -259,12 +259,13 @@ fight() {
 
 ## Huir
 leave() {
-    echo Recibes un Whatsapp de tu pareja diciéndote de que está sola en casa.
-    read -r
+    echo Recibes un Whatsapp de tu pareja diciéndote que está sola en casa.
+    sleep 2
     echo ¡Escapas exitosamente de la pelea!
-    read -r
+    sleep 2
     echo Coma Flotante-kun se queda llorando en un rincón...
     echo "Has obtenido [Final 3]"
+    sleep 2
     huir=$((huir+1))
     logro_3=1
     fin
