@@ -263,6 +263,7 @@ boss_turn() {
     echo Turno de Coma Flotante-kun.
     boss_atk_done=$((RANDOM%boss_atk))
 
+    # Se coge un INT al azar de un array del 0-6, se guardan y generan una frase según sea su valor.
     numero_azar=$((RANDOM%frase_azar))
 
     if [[ $numero_azar -eq 0 ]]; then
@@ -354,6 +355,7 @@ character() {
         current_atk=$atk_1
         current_def=$def_1
         character_on_play=1
+        choose_personaje=0
         boss_turn
     fi
 
@@ -366,15 +368,18 @@ character() {
                 current_atk=$atk_2
                 current_def=$def_2
                 character_on_play=2
+                choose_personaje=0
                 boss_turn
     fi
 
     if [[ $choose_personaje -eq 3 ]]; then
+        choose_personaje=0
         my_turn 
     fi
 
     if [[ $choose_personaje -ge 4 ]]; then
         echo Introduce un valor válido
+        choose_personaje=0
         character
     fi
 }
@@ -504,22 +509,27 @@ bag() {
         read -r choose_mochila
         if [[ $choose_mochila -eq 1 ]]; then
             echo La poción de vida no está disponible.
+            choose_mochila=0
             bag
         fi
         if [[ $choose_mochila -eq 2 ]]; then
             echo La poción de ataque no está disponible.
+            choose_mochila=0
             bag
         fi
         if [[ $choose_mochila -eq 3 ]]; then
+            choose_mochila=0
             my_turn
         fi
         if [[ $choose_mochila -eq 4 ]]; then
             echo L̴̟͔̆a̶͇̩͗̂n̷̤̓ż̸̦̝a̸̛ͅș̴̇ ̵̛̺e̶̩̍l̷̡͙̚ ̴̤͐m̵̞̳͒ä̶̝̐n̷͎̹̑̑ḡ̶̮͕͛a̶̢̔̏ ̶̺̹̚h̵̃͜a̵͖̓̀c̸̡̾̚i̵̥͍̎a̸͚͠ ̷̮̦́C̸̹͝o̴̖̹̓m̴̙̄͋ͅa̷̮̗̓ ̷̥̒F̵͈̥̆l̴̦͓͐o̶̪̖͑̿t̴̢̛̰̀a̷̲̼̋̇n̸̩͘t̵̗̬̋ė̴͈̔-̶͙̼͋k̴̹͎̍͝u̸̼̞̿͛ṅ̸̥̼͑.̵͖͐
             read -r
+            choose_mochila=0
             real_ending
         fi
         if [[ $choose_mochila -eq 4 ]]; then
             echo Introduce un valor válido.
+            choose_mochila=0
             bag
         fi
     fi
@@ -536,6 +546,7 @@ bag() {
             current_hp=$(( (( current_hp * 50 ) / 100 ) + current_hp ))
             mochila_pocion=$(( mochila_pocion + 1 ))
             echo Has consumido 1 poción de vida.
+            choose_mochila=0
             boss_turn
         fi
         if [[ $choose_mochila -eq 2 ]]; then
@@ -545,14 +556,17 @@ bag() {
             current_atk=$(( current_atk * 2 ))
             mochila_fuerza=$(( mochila_fuerza + 1 ))
             echo Has consumido 1 poción de ataque.
+            choose_mochila=0
             boss_turn
         fi
         if [[ $choose_mochila -eq 3 ]]; then
+            choose_mochila=0
             my_turn
         fi
         if [[ $choose_mochila -gt 3 ]];
         then
             echo Introduce un valor válido.
+            choose_mochila=0
             bag 
         fi
     fi
@@ -560,8 +574,9 @@ bag() {
     
     # Se ha usado la poción y la fuerza
     if [[ ( $mochila_pocion -eq 1 ) && ( $mochila_fuerza -eq 1 ) ]]; then
-    echo No tienes objetos en la mochila.
-    bag
+        echo No tienes objetos en la mochila.
+        choose_mochila=0
+        bag
     fi
 
     # Se ha usado la poción de vida
@@ -576,14 +591,17 @@ bag() {
             current_atk=$(( current_atk * 2 ))
             mochila_fuerza=$(( mochila_fuerza + 1 ))
             echo Has consumido 1 poción de ataque.
+            choose_mochila=0
             boss_turn
         fi
         if [[ $choose_mochila -eq 2 ]]; then
+            choose_mochila=0
             my_turn
         fi
         if [[ $choose_mochila -gt 2 ]];
         then
             echo Introduce un valor válido.
+            choose_mochila=0
             bag 
         fi
     fi
@@ -600,14 +618,17 @@ bag() {
             current_hp=$(( (( current_hp * 50 ) / 100 ) + current_hp ))
             mochila_pocion=$(( mochila_pocion + 1 ))
             echo Has consumido 1 poción de vida.
+            choose_mochila=0
             boss_turn
         fi
         if [[ $choose_mochila -eq 2 ]]; then
+            choose_mochila=0
             my_turn
         fi
         if [[ $choose_mochila -gt 2 ]];
         then
             echo Introduce un valor válido.
+            choose_mochila=0
             bag 
         fi
     fi
@@ -650,19 +671,24 @@ my_turn() {
     echo ¿Qué quieres hacer?
     read -r choose
     if [[ $choose -eq 1 ]]; then
+        choose=0
         fight
     fi
     if [[ $choose -eq 2 ]]; then
+        choose=2
         character
     fi
     if [[ $choose -eq 3 ]]; then
+        choose=3
         bag
     fi
     if [[ $choose -eq 4 ]]; then
+        choose=4
         leave
     fi
     if [[ $choose -ge 5 ]]; then
         echo Introduce un valor correcto
+        choose=5
         my_turn
     fi
 }
