@@ -276,7 +276,8 @@ leave() {
 ### Turno del Boss
 boss_turn() {
     echo Turno de Coma Flotante-kun.
-    boss_atk_done=$((RANDOM%boss_atk))
+
+    boss_atk_done=$((RANDOM%boss_atk + 5))
 
     # Se coge un INT al azar de un array del 0-6, se guardan y generan una frase según sea su valor.
     numero_azar=$((RANDOM%frase_azar))
