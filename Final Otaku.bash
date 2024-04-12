@@ -61,18 +61,27 @@
 ### Inicio
 inicio() {
 echo ¡Bienvenido a Final Otaku!
+sleep 2
 echo En este juego manejarás a dos legendarios guerreros para vencer el mal otaku.
-
+sleep 2
+echo ____________________________________________________________________________________
+echo
 echo ¿Con qué personaje deseas empezar?
+echo
 echo 1. Espadachín Okay Pepe
 echo Un legendario espadachín con estadísticas equilibradas. Es el hermano de la famosa Alexa Amazon.
-echo "--------------------------------------------------------------"
+echo 
+echo ____________________________________________________________________________________
 echo 2. Guardián Dani el Pensante
 echo Las leyendas cuentan que piensa tanto, que no procesa el daño que recibe. Tiene poco ataque y defensa pero mucha vida. 
-echo "--------------------------------------------------------------"
+echo 
+echo ____________________________________________________________________________________
+echo 
 read -r inicio_character
 if [[ ( $inicio_character -lt 1 ) || ( $inicio_character -gt 2 )]]; then # Si el valor es menor de 1 o mayor que 2, seleccionas a Pepe.
     echo Este personaje no existe. Se usará a Espadachín Okay Pepe.
+    echo 
+    sleep 2
     character_on_play=1
     inicio_character=0
     my_turn
@@ -93,9 +102,9 @@ fi
 fin() {
     if [[ $boss_hp -le 0 && $logro_4 -eq 1 && $logro_2 -eq 1 && $logro_3 -eq 1 && $logro_5 -ne 1 ]]; then
     echo ¿Te gustaría volver a intentarlo?
-    read -r
+    sleep 2
     echo ¿Te gustaría intentar hacer las cosas de otra manera?
-    read -r
+    sleep 2
     echo 1. Tan sólo quiero volver a jugar.
     echo 2. No, no quiero volver a jugar.
     echo 3. Sí, pero esta vez prometo que será la última.
@@ -108,9 +117,11 @@ fin() {
     3) 
         ending_choose=0
         secret=1
+        sleep 1
         inicio
         ;;
     *) echo Elige una opción válida
+        sleep 1
         ending_choose=0
         fin
     esac
@@ -124,11 +135,13 @@ fin() {
     case $ending_choose in
     1) 
         ending_choose=0
+        sleep 1
         inicio ;;
     2) 
         ending_choose=0
         exit ;;
     *) echo Elige una opción válida
+        sleep 1
         ending_choose=0
         fin
     esac
@@ -140,59 +153,62 @@ fin() {
 check_win() {
     if [[ $boss_hp -le 0 && $logro_1 -eq 1 && $logro_2 -eq 1 && $logro_3 -eq 1 ]]; then
         echo Coma Flotante-kun se desploma al suelo.
-        read -r
+        sleep 2
         echo Escuchas sollozos. Lo ves alzando la mano hacia el horizonte con lo que parece ser lágrimas en sus ojos.
-        read -r
+        sleep 2
         echo ¿Por qué tengo esta mala suerte?
-        read -r
+        sleep 2
         echo ¿No podías simplemente correr hacia otro lado? Te habría dejado escapar... lo sabes... lo hemos hecho miles de veces.
-        read -r
+        sleep 2
         echo O igual no. Pero sé que no sirve de nada explicártelo. Siempre es lo mismo.
-        read -r
+        sleep 2
         echo ¿Por qué tuve que nacer aquí? No... ¿Por qué tuvimos que nacer aquí?
-        read -r
+        sleep 2
         echo Vivimos en este bucle infinito en el que yo muero o te salvo antes de que mueras.
-        read -r
+        sleep 2
         echo Pero cuando te salvo, el ciclo se reinicia... y no recuerdas nada.
-        read -r
+        sleep 2
         echo Cuando muero es lo mismo excepto que yo sí tengo recuerdos.
-        read -r
+        sleep 2
         echo Recuerdo todas las veces que me has matado. También recuerdo todas las veces que te he salvado, y las pocas veces en las que por suerte, te da por huir del combate.
-        read -r
+        sleep 2
         echo Esas son mis favoritas. Un reinicio sin dolor. A veces me da por llorar de alegría.
-        read -r
+        sleep 2
         echo Ahora que vamos a volver a ser reiniciados y no vas a recordar nada, déjame hacerte una pregunta.
-        read -r
+        sleep 2
         echo ¿Estás orgulloso?
-        read -r
+        sleep 2
         echo ¿Estás orgulloso de tu elección?
-        read -r
+        sleep 2
         echo Coma Flotante-kun ha muerto.
         echo ¡Has ganado!
         echo "Has obtenido [Final 4: El Bucle]"
+        sleep 2
         logro_4=1
         fin
     fi
 
     if [[ $boss_hp -le 0 ]]; then
         echo Coma Flotante-kun se desploma al suelo.
-        read -r
+        sleep 2
         echo Escuchas sollozos.
-        read -r
+        sleep 2
         echo ¿Por qué tengo esta mala suerte?
-        read -r
+        sleep 2
         echo ¿No podías simplemente correr hacia otro lado? Te habría dejado escapar...
-        read -r
+        sleep 2
         echo Lo sabes...
-        read -r
+        sleep 2
         echo O igual no. Pero sé que no sirve de nada explicártelo.
-        read -r
+        sleep 2
         echo Coma Flotante-kun ha muerto.
         echo ¡Has ganado!
         echo "Has obtenido [Final 1: Bañar el Otaku]"
+        sleep 2
         logro_1=1
     else
         boss_turn
+        sleep 1
     fi
 }
 ###
@@ -201,8 +217,13 @@ check_win() {
 
 ### Atacar
 fuego () {
+    echo 
     echo Al grito de "MUERE BICHO" haces tremendo lanzallamas encendiendo un bote de insecticida con un mechero.
+    sleep 2
+    echo 
     echo ¡Es efectivo!
+    echo 
+    sleep 2
     echo Haces $(( (current_atk * fire ) * ( full_percent - boss_def ) / full_percent )) de daño de fuego.
     echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk * fire ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
     boss_hp=$(( boss_hp - ( ( current_atk * fire ) * ( full_percent - boss_def ) / full_percent ) ))
@@ -211,37 +232,68 @@ fuego () {
 }
 
 aire () {
+    echo 
     echo Soplas fuertemente hacia el enemigo.
+    sleep 2
+    echo 
     echo No es muy efectivo... 
+    sleep 2
+    echo 
     echo Salvo despeinarle, no le has hecho nada.
+    sleep 2
+    echo 
     choose_atk=0
     check_win
 }
 
 tierra() {
+    echo 
     echo Buscas una piedra para tirársela, pero una piedra grande.
+    sleep 2
+    echo 
     echo No es efectivo...
+    sleep 2
+    echo 
     echo Haces $(( (current_atk / earth ) * ( full_percent - boss_def ) / full_percent )) de daño de tierra.
+    sleep 2
+    echo 
     echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk / earth ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
+    sleep 2
+    echo 
     boss_hp=$(( boss_hp - ( ( current_atk / earth ) * ( full_percent - boss_def ) / full_percent ) ))
     choose_atk=0
     check_win
 }
 
 agua() {
+    echo 
     echo Al recibir tremendo olor a otaku, haces la danza de la lluvia.
+    sleep 2
+    echo 
     echo ¡Es muy efectivo!
+    sleep 2
+    echo 
     echo Haces $(( (current_atk * water ) * ( full_percent - boss_def ) / full_percent )) de daño de agua.
+    sleep 2
+    echo 
     echo Coma Flotante-kun tiene ahora $(( boss_hp - ( ( current_atk * water ) * ( full_percent - boss_def ) / full_percent ) )) de vida.
+    sleep 2
+    echo 
     boss_hp=$(( boss_hp - ( ( current_atk * water ) * ( full_percent - boss_def ) / full_percent ) ))
     choose_atk=0
     check_win
 }
 
 fight() {
+    echo 
     echo Has seleccionado Lucha.
+    sleep 2
     echo ¿Con qué elemento deseas atacar?
-    echo 1. Fuego. 2. Aire. 3. Tierra. 4. Agua. 5. Volver.
+    sleep 1
+    echo 1. Fuego.  2. Aire.
+    echo 4. Agua .  3. Tierra.
+    echo 5. Volver.
+    sleep 1
     read -r choose_atk
     case $choose_atk in
         1) fuego ;;
@@ -250,7 +302,8 @@ fight() {
         4) agua ;;
         6) my_turn ;;
         *) echo Introduce un valor correcto
-        fight
+            choose_atk=0
+            fight
     esac
 }
 ###
@@ -331,9 +384,9 @@ boss_turn() {
     # Matar a Pepe
     if [[ ( $character_on_play -eq 1 ) && ( $current_hp -le 0 ) ]]; then ## Pepe
         echo "$character_name" ha muerto.
-        read -r
+        sleep 2
         echo No te olvides de encargar uno nuevo por Amazon Prime.
-        read -r
+        sleep 2
         character_on_play=2 
         vida_1=0
         my_turn
@@ -342,9 +395,9 @@ boss_turn() {
     # Matar a Dani
     if [[ ( $character_on_play -eq 2 ) && ( $current_hp -le 0 ) ]]; then ## Dani
         echo "$character_name" ha muerto.
-        read -r
+        sleep 2
         echo El Guardián Dani el Pensador ha muerto pero sus preguntas siempre vivirán en nuestros corazones.
-        read -r
+        sleep 2
         character_on_play=1
         vida_2=0
         my_turn
@@ -354,9 +407,9 @@ boss_turn() {
     if [[ $vida_1 -le 0 ]]; then
         if [[ $vida_2 -le 0 ]]; then
             echo Has perdido...
-            read -r
+            sleep 2
             echo Justo cuando "$character_name" está por caer al suelo, una mano le sujeta.
-            read -r
+            sleep 2
             echo "[Final 2: Aprende a Jugar Crack]"
             logro_2=1
             fin
@@ -433,9 +486,9 @@ character() {
 ### Real Ending
 real_ending() {
     echo ¿Qué es esto?
-    read -r
+    sleep 2
     echo ¿Un manga de One Piece?
-    read -r
+    sleep 2
     echo "Pero, ¿Por qué me lo has tirado? ¿Es para mí? (SI/NO)"
     read -r real_answer
     if [[ $real_answer = SI ]]; then
@@ -449,11 +502,11 @@ real_ending() {
                 if [[ $real_answer = "ES PARA TI" ]]; then
                     real_answer=0
                     echo Vale, vale... Entonces le echaré un ojo si no te importa.
-                    read -r
+                    sleep 2
                     echo ¡Tiene varias hojas a color!
-                    read -r
+                    sleep 2
                     echo ¿Está firmado? ¿No es esta la firma de Eiichiro Oda, el creador de One Piece? Imposible...
-                    read -r
+                    sleep 2
                     echo "¿Qué? ¿Qué por qué estoy llorando? No estoy llorando... ¡Son mentiras y calumnias! (SI ESTAS LLORANDO/NO ESTAS LLORANDO)"
                     read -r real_answer
                     if [[ $real_answer = "SI ESTAS LLORANDO" ]]; then
@@ -461,15 +514,15 @@ real_ending() {
                         echo Vale, es verdad...
                         .sleep 1s
                         echo Pero es que el regalo es tan bueno...
-                        read -r
+                        sleep 2
                         echo Todo este tiempo pensaba que estaba solo. Gracias por el regalo.
-                        read -r
+                        sleep 2
                         echo Aunque permaneceremos eternamente en un ciclo lleno de muerte y sufrimiento, tu regalo me dará fuerzas para recordar que no estoy solo.
-                        read -r
+                        sleep 2
                         echo Para recordar de que, al menos una vez durante los infinitos ciclos, obtuve un amigo.
-                        read -r
+                        sleep 2
                         echo Toma también este regalo de mi parte, mi amigo.
-                        read -r
+                        sleep 2
                         echo Aunque no queda mucho tiempo para el siguiente reinicio, y después de esto lo olvidarás todo nuevamente, espero que este regalo ayude a que nuestros caminos vuelvan a juntarse.
                         echo "Has obtenido [Final Real: No estás solo]"
                         logro_5=1
@@ -478,24 +531,24 @@ real_ending() {
                         logro_2=0
                         logro_1=0
                         secret=0
-                        read -r
+                        sleep 2
                         echo Aquí viene. Adiós amigo.
-                        read -r
+                        sleep 2
                         fin
                     else
                         echo Gracias por entenderlo...
                         real_answer=0
                         .sleep 1s
                         echo El regalo es tan bueno... Muchas gracias, de verdad.
-                        read -r
+                        sleep 2
                         echo Todo este tiempo pensaba que estaba solo.
-                        read -r
+                        sleep 2
                         echo Aunque estamos en un ciclo eterno de muerte y sufrimiento, tu regalo me dará fuerzas para recordar que no estoy solo.
-                        read -r
+                        sleep 2
                         echo Para recordar de que, al menos una vez durante los infinitos ciclos, obtuve un amigo.
-                        read -r
+                        sleep 2
                         echo Toma también este regalo de mi parte, mi amigo.
-                        read -r
+                        sleep 2
                         echo Aunque no queda mucho tiempo para el siguiente reinicio, y después de esto lo olvidarás todo nuevamente, espero que este regalo ayude a que nuestros caminos vuelvan a juntarse.
                         echo "Has obtenido [Final 5: No estás solo]"
                         logro_5=1
@@ -504,15 +557,15 @@ real_ending() {
                         logro_2=0
                         logro_1=0
                         secret=0
-                        read -r
+                        sleep 2
                         echo Aquí viene. Adiós amigo.
-                        read -r
+                        sleep 2
                         fin
                     fi
                 else
                     echo Has roto mi corazón...
                     real_answer=0
-                    read -r
+                    sleep 2
                     logro_4=0
                     logro_3=0
                     logro_2=0
@@ -523,7 +576,7 @@ real_ending() {
         else
             echo ¡Vaya forma de gastarme una broma!
             real_answer=0
-            read -r
+            sleep 2
             logro_4=0
             logro_3=0
             logro_2=0
@@ -534,7 +587,7 @@ real_ending() {
     else
         echo Sabía que esto no era para mí... Soy un iluso
         real_answer=0
-        read -r
+        sleep 2
         logro_4=0
         logro_3=0
         logro_2=0
@@ -557,7 +610,7 @@ bag() {
         echo 1. 1x Poción de vida.
         echo 2. 1x Poción de ataque.
         echo 3. Volver
-        echo 4̷̭͖́̑. 1x Manga de One Piece.
+        echo 4. 1x Manga de One Piece.
         read -r choose_mochila
         if [[ $choose_mochila -eq 1 ]]; then
             echo La poción de vida no está disponible.
